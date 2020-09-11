@@ -38,7 +38,7 @@
 param (
     # List of items which will be in the array of the dynamic rule
     [Parameter(Mandatory=$true)]
-    [string[]]
+    [Object[]]
     $QuerryArray,
     # Dynamic query template
     [Parameter(Mandatory=$true)]
