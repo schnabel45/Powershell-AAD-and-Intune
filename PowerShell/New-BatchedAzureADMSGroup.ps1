@@ -8,13 +8,13 @@
     assigned group name to nest into, then batch the identifiers and create individual dynamic groups.
 .EXAMPLE
     PS C:\> New-BatchDynamicGroup.ps1 -QuerryArray $devices 
-        -QueryTemplate "(deviceName -in {QuerryArray})"
+        -QueryTemplate "(device.DisplayName -in {QuerryArray})"
         -DynamicGroupNameTemplate "Intune_Devices_DynamicGroup_Batch-Name-{Number}"
         -ParentGroupObjectID 00000000-0000-0000-0000-000000000000
     The above command takes an array of objects to put into the dynamic querry, then creates the nesscesary number of 
     dynamic groups to fit the entire batch. Each of these are then nested into the given parent group.
     For example, given inputs
-        QueryTemplate = "(deviceName -in {QuerryArray})"
+        QueryTemplate = "(device.DisplayName -in {QuerryArray})"
         QuerryArray = @("iPhone-123", "iPhone-456", "iPad-AAA")
         DynamicGroupNameTemplate = "Intune_Device_DynamicGroup_Test-Batch{Number}"
     The script will create a dynamic group named Intune_Device_DynamicGroup_Test-Batch1 with a dynamic querry of
