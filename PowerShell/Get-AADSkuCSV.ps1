@@ -6,9 +6,16 @@
     Returns a CSV.
 #>
 
+[CmdletBinding()]
+param (
+    [Parameter()]
+    [switch]
+    $ExportAsCSV
+)
+
 $skus = Get-AzureADSubscribedSku | `
     Select-Object ObjectId, SkuPartNumber, SkuId, ConsumedUnits, `
-        @{N="PurchasedUnits";E={$_.PrepaidUnits.Enabled}} | `
-    ConvertTo-Csv -NoTypeInformation
-
+        @{N="PurchasedUnits";E={$_.PrepaidUnits.Enabled}}
+        
+if($ExportAsCSV){ return $skus | ConvertTo-Csv -NoTypeInformation}
 return $skus
